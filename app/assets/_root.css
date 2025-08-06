@@ -1,0 +1,18 @@
+	:root {
+		/* Charcoal & Electric Blue - composition made with ai */
+		--background-color: #0f0f23;
+		--background-secondary: #161b33;
+		--text-color: #e2e8f0;
+		--heading-color: #f8fafc;
+		--primary-color: #00d9ff;
+		--primary-hover: #0ea5e9;
+		--secondary-color: #6366f1;
+		--secondary-hover: #4f46e5;
+		--subtle-text: #94a3b8;
+		--border-color: #334155;
+		--card-background: #1e293b;
+		--code-background: #0f172a;
+		--accent-color: #10b981;
+		--warning-color: #f59e0b;
+		--surface-glow: rgba(0, 217, 255, 0.1);
+	}

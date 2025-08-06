@@ -1,0 +1,102 @@
+body {
+	font-family: 'Cascadia Code', sans-serif, monospace;
+	background: var(--background-color);
+	background-image: 
+		radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
+		radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+	color: var(--text-color);
+	line-height: 1.7;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
+header, main {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+
+h1,
+h2,
+h3 {
+	color: var(--heading-color);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: 2.5rem;
+	background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	position: relative;
+	text-transform: lowercase;
+	
+}
+
+h1::after {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60px;
+	height: 2px;
+	background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+h2, .h2 {
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 1.5rem;
+	position: relative;
+}
+
+h2::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 1px;
+	background: var(--primary-color);
+}
+
+h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+p {
+	margin-bottom: 1rem;
+}
+
+
+a {
+	color: var(--primary-color);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+button:focus {
+	outline: 2px solid var(--secondary-color);
+	outline-offset: 2px;
+}
+
+
+

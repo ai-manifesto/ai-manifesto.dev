@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Signee {
+  id          String   @id @default(cuid())
+  providerId  String   @map("provider_id")
+  provider    Provider
+  username    String?
+  firstName   String?  @map("first_name")
+  lastName    String?  @map("last_name")
+  displayName String?  @map("display_name")
+  avatarUrl   String   @map("avatar_url")
+  profileUrl  String   @map("profile_url")
+  signedAt    DateTime @default(now()) @map("signed_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@unique([providerId, provider])
+  @@index([signedAt(sort: Desc)])
+  @@index([provider])
+  @@map("signees")
+}
+
+enum Provider {
+  github
+  linkedin
+}

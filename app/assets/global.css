@@ -1,0 +1,8 @@
+@import './_root.css';
+@import './css/base.css';
+@import './css/components/card.css';
+@import './css/components/button.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

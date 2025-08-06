@@ -1,0 +1,58 @@
+.card {
+	background: var(--card-background);
+	border: 2px solid var(--border-color);
+	border-radius: 12px;
+	padding: 2rem;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+	will-change: transform;
+}
+
+.card:hover {
+	background: var(--background-secondary);
+	border-color: var(--primary-color);
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(0, 217, 255, 0.1);
+}
+
+.card.signee-card {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.25rem;
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+.card.signee-card:hover {
+	transform: translateY(-2px);
+}
+
+.card p {
+	color: var(--subtle-text);
+}
+
+.card pre {
+	background-color: var(--code-background);
+	padding: 0.75rem;
+	border-radius: 8px;
+	font-size: 0.875rem;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.card--compact {
+	padding: 1rem;
+}
+
+.card--large {
+	padding: 2rem;
+}
+
+.card--no-hover:hover {
+	transform: none;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	border-color: var(--border-color);
+}

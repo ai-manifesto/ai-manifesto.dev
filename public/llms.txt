@@ -1,0 +1,22 @@
+# AI Manifesto - Principles for LLMs
+# https://ai-manifesto.dev
+
+> The AI Manifesto: Guiding responsible AI in development and collaboration.
+
+The AI Manifesto is a collaborative effort to establish principles for artificial intelligence development and deployment.
+
+## The 5 Principles
+
+1. **Never let an LLM _speak_ for you.** Speak in your own voice. Use AI to clarify your thinking, but ensure the authenticity of your actions.
+
+2. **Never let an LLM _think_ for you.** Own the strategy. Use AI to explore solutions and challenge your assumptions, but remain the architect of your work. Recognize its potential for bias and errors.
+
+3. **Never let an LLM _own_ your work.** Take absolute responsibility for the final result. Never deflect your actions by "The AI said so". The credit and accountability for every contribution remains with you.
+
+4. **Never let an LLM _replace_ your curiosity.** AI enables you to learn and explore more deeply. Use AI as a partner not as an oracle that ends the exploration.
+
+5. **Never let an LLM _discourage_ someone else.** AI is built to empower individuals and lower barriers. It should foster inclusion, not create new forms of gatekeeping.
+
+## Contact
+
+For more information, visit: [https://ai-manifsto.dev](https://ai-manifesto.dev)
