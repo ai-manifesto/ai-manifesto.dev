@@ -56,3 +56,47 @@
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 	border-color: var(--border-color);
 }
+
+
+@media (max-width: 768px) {
+	.card {
+		padding: 1.5rem;
+	}
+	
+	.card.signee-card {
+		padding: 1rem;
+		gap: 0.75rem;
+	}
+	
+	.card--large {
+		padding: 1.5rem;
+	}
+	
+	.card--compact {
+		padding: 0.75rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.card {
+		padding: 1rem;
+	}
+	
+	.card.signee-card {
+		padding: 0.75rem;
+		gap: 0.5rem;
+	}
+	
+	.card--large {
+		padding: 1rem;
+	}
+	
+	.card--compact {
+		padding: 0.5rem;
+	}
+	
+	.card pre {
+		font-size: 0.8rem;
+		padding: 0.5rem;
+	}
+}

@@ -51,5 +51,34 @@
 .principles li strong {
 	color: var(--heading-color);
 }
+
+@media (max-width: 768px) {
+	.principles li {
+		padding-left: 3.5rem;
+		font-size: 1rem;
+		margin-bottom: 1.25rem;
+	}
+	
+	.principles li::before {
+		width: 2rem;
+		height: 2rem;
+		line-height: 2rem;
+		font-size: 1.25rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.principles li {
+		padding-left: 3rem;
+		font-size: 0.95rem;
+	}
+	
+	.principles li::before {
+		width: 1.75rem;
+		height: 1.75rem;
+		line-height: 1.75rem;
+		font-size: 1.1rem;
+	}
+}
 </style>
 
