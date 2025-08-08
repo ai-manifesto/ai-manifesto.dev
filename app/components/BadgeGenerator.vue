@@ -21,7 +21,7 @@ const { copyToClipboard, getCopiedState } = useMultipleClipboard()
 
 //TODO: Set config.url 
 const previewUrl = '/badge.svg'
-const badgeImageUrl = `https://ai-manifesto.dev/badge.svg`
+const badgeImageUrl = 'https://ai-manifesto.dev/badge.svg'
 const siteUrl = 'https://ai-manifesto.dev'
 const badgeMarkdown = `[![AI Manifesto Signee](${badgeImageUrl})](${siteUrl})`
 const badgeHtml = `<a href="${siteUrl}"><img src="${badgeImageUrl}" alt="ai Manifesto Signee"></a>`
@@ -162,5 +162,49 @@ const badgeHtml = `<a href="${siteUrl}"><img src="${badgeImageUrl}" alt="ai Mani
   color: var(--text-color);
   font-family: 'Cascadia Code', monospace;
   font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .badge-image {
+    width: 180px;
+    height: auto;
+  }
+  
+  .copy-btn {
+    width: 80px;
+    height: 35px;
+    font-size: 0.7rem;
+    padding: 0 0.5rem;
+  }
+  
+  .code-block pre {
+    padding: 0.75rem 5rem 0.75rem 0.75rem;
+  }
+  
+  .code-block pre code {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-image {
+    width: 160px;
+  }
+  
+  .copy-btn {
+    width: 70px;
+    height: 32px;
+    font-size: 0.65rem;
+    right: 8px;
+    top: 8px;
+  }
+  
+  .code-block pre {
+    padding: 0.5rem 4.5rem 0.5rem 0.5rem;
+  }
+  
+  .code-block pre code {
+    font-size: 0.75rem;
+  }
 }
 </style>

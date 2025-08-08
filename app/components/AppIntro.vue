@@ -64,4 +64,29 @@
   text-decoration: underline;
   text-decoration-color: var(--primary-color);
 }
+
+@media (max-width: 768px) {
+  .claim {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .intro-text {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 0.75rem auto 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .claim {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .intro-text {
+    font-size: 0.9rem;
+    margin: 0.5rem auto 0 auto;
+  }
+}
 </style>
