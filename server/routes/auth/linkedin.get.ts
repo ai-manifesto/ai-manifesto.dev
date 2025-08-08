@@ -4,7 +4,7 @@ export default defineOAuthLinkedInEventHandler({
   config: {
     emailRequired: false,
   },
-  async onSuccess(event, { user }) {
+  async onSuccess (event, { user }) {
     try {
 
       const userId = user.sub || user.id?.toString()
@@ -16,18 +16,17 @@ export default defineOAuthLinkedInEventHandler({
       const alreadySigned = await hasUserSigned(userId, 'linkedin')
       
       if (!alreadySigned) {
-        //  Map LinkedIn OpenID Connect response
-        const displayName = user.name || `${user.given_name || ''} ${user.family_name || ''}`.trim() || user.vanityName || 'LinkedIn User'
-        const firstName = user.given_name || user.firstName || null
-        const lastName = user.family_name || user.lastName || null
-        const avatarUrl = user.picture || user.avatar_url || 'https://static.licdn.com/sc/h/3r1v2dvhvfg1wxc8t9p8k4sy5'
-        const profileUrl = user.profile || user.html_url || `https://linkedin.com/in/${user.vanityName || userId}`
+        const displayName = user.name || `${user.given_name || ''} ${user.family_name || ''}`.trim() || 'LinkedIn User'
+        const firstName = user.given_name || null
+        const lastName = user.family_name || null
+        const avatarUrl = user.picture || 'https://static.licdn.com/sc/h/3r1v2dvhvfg1wxc8t9p8k4sy5'
+        // LinkedIn does not provide a profile url. We are using the display name and populate the search field to find that person.
+        const profileUrl = `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(displayName)}`
 
-        // Intended behavior: Automatically sign the manifesto
         const signeeData = {
           providerId: userId,
           provider: 'linkedin' as const,
-          username: user.vanityName || user.login || null,
+          username: null, 
           firstName,
           lastName,
           displayName,
@@ -41,11 +40,11 @@ export default defineOAuthLinkedInEventHandler({
       } else {
         return sendRedirect(event, '/?signed=already')
       }
-    } catch (error) {
+    } catch {
       return sendRedirect(event, '/?error=sign_failed')
     }
   },
-  onError(event: any, error: any) {
+  onError (event: any) {
     return sendRedirect(event, '/?error=linkedin_auth_failed')
   },
 })
