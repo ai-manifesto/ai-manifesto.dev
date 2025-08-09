@@ -38,6 +38,9 @@ declare module '#auth-utils' {
       profile?: string
     }
     loggedInAt?: Date
+    privacyLevel?: 'full' | 'first_name' | 'anonymous'
+    showProfilePic?: boolean
+    timestamp?: number
   }
 
   type SecureSessionData = {

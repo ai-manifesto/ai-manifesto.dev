@@ -5,6 +5,17 @@ export const ProviderSchema = z.enum([
   'linkedin',
 ])
 
+export const PrivacyLevelSchema = z.enum([
+  'full',
+  'first_name',
+  'anonymous',
+])
+
+export const PrivacySessionSchema = z.object({
+  privacyLevel: PrivacyLevelSchema,
+  showProfilePic: z.boolean(),
+})
+
 export const SigneeInputSchema = z.object({
   providerId: z.string(),
   provider: ProviderSchema,
@@ -14,11 +25,7 @@ export const SigneeInputSchema = z.object({
   displayName: z.string().optional().nullable(),
   avatarUrl: z.string(),
   profileUrl: z.string(),
-  privacyLevel: z.enum([
-    'full',
-    'first_name',
-    'anonymous',
-  ]).default('full'),
+  privacyLevel: PrivacyLevelSchema.default('full'),
   showProfilePic: z.boolean().default(true),
   userHash: z.string().optional().nullable(),
 })
@@ -33,11 +40,7 @@ export const PublicSigneeSchema = z.object({
   avatarUrl: z.string(),
   profileUrl: z.string(),
   firstName: z.string().optional().nullable(),
-  privacyLevel: z.enum([
-    'full',
-    'first_name', 
-    'anonymous',
-  ]).optional(),
+  privacyLevel: PrivacyLevelSchema.optional(),
   showProfilePic: z.boolean().optional(),
 })
 

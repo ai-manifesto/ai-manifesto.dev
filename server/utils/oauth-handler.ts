@@ -1,6 +1,6 @@
 import { addSignee, hasUserSigned, prisma } from './database'
 import { createUserHash, processSigneeData } from './privacy'
-import type { PrivacyLevel } from '#shared/utils/signee-display'
+import { clearPrivacySession, getPrivacySession } from './privacy-session'
 
 export async function handleOAuthSignup (
   event: any,
@@ -8,15 +8,21 @@ export async function handleOAuthSignup (
   provider: 'github' | 'linkedin',
 ) {
   try {
-    const query = getQuery(event)
-    const privacyLevel = (query.privacy || 'full') as PrivacyLevel
-    const showProfilePic = query.showProfilePic !== 'false'
+    const privacyData = await getPrivacySession(event)
+    
+    if (!privacyData) {
+      console.error('No privacy session found for OAuth signup')
+      return sendRedirect(event, `/?error=${provider}_missing_privacy`)
+    }
+
+    const { privacyLevel, showProfilePic } = privacyData
 
     const userId = provider === 'linkedin' 
       ? (user.sub || user.id?.toString())
       : user.id.toString()
     
     if (!userId) {
+      await clearPrivacySession(event)
       return sendRedirect(event, `/?error=${provider}_missing_id`)
     }
     // map open connect data for linkedin to schema
@@ -37,11 +43,13 @@ export async function handleOAuthSignup (
         select: { id: true },
       })
       if (existingAnonymous) {
+        await clearPrivacySession(event)
         return sendRedirect(event, '/?signed=already')
       }
     } else {
       const alreadySigned = await hasUserSigned(userId, provider)
       if (alreadySigned) {
+        await clearPrivacySession(event)
         return sendRedirect(event, '/?signed=already')
       }
     }
@@ -52,10 +60,12 @@ export async function handleOAuthSignup (
     })
     
     await addSignee(signeeData)
+    await clearPrivacySession(event)
     
     return sendRedirect(event, '/?signed=success')
   } catch (error) {
     console.error(`${provider} OAuth error:`, error)
+    await clearPrivacySession(event)
     return sendRedirect(event, `/?error=${provider}_auth_failed`)
   }
 }
