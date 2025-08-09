@@ -14,5 +14,16 @@
 		--code-background: #0f172a;
 		--accent-color: #10b981;
 		--warning-color: #f59e0b;
+		--error-color: #ef4444;
+		--info-color: #3b82f6;
 		--surface-glow: rgba(0, 217, 255, 0.1);
+		--primary-glow-light: rgba(0, 217, 255, 0.2);
+		--primary-glow-medium: rgba(0, 217, 255, 0.3);
+		--primary-glow-heavy: rgba(0, 217, 255, 0.4);
+		--primary-glow-subtle: rgba(0, 217, 255, 0.05);
+		--black-overlay: rgba(0, 0, 0, 0.5);
+		--black-shadow: rgba(0, 0, 0, 0.2);
+		--accent-transparent: rgba(16, 185, 129, 0.1);
+		--error-transparent: rgba(239, 68, 68, 0.1);
+		--info-transparent: rgba(59, 130, 246, 0.1);
 	}

@@ -9,17 +9,20 @@ datasource db {
 }
 
 model Signee {
-  id          String   @id @default(cuid())
-  providerId  String   @map("provider_id")
-  provider    Provider
-  username    String?
-  firstName   String?  @map("first_name")
-  lastName    String?  @map("last_name")
-  displayName String?  @map("display_name")
-  avatarUrl   String   @map("avatar_url")
-  profileUrl  String   @map("profile_url")
-  signedAt    DateTime @default(now()) @map("signed_at")
-  createdAt   DateTime @default(now()) @map("created_at")
+  id             String   @id @default(cuid())
+  providerId     String   @map("provider_id")
+  provider       Provider
+  username       String?
+  firstName      String?  @map("first_name")
+  lastName       String?  @map("last_name")
+  displayName    String?  @map("display_name")
+  avatarUrl      String   @map("avatar_url")
+  profileUrl     String   @map("profile_url")
+  signedAt       DateTime @default(now()) @map("signed_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  privacyLevel   String   @default("full") @map("privacy_level")
+  showProfilePic Boolean  @default(true) @map("show_profile_pic")
+  userHash       String?  @unique @map("user_hash")
 
   @@unique([providerId, provider])
   @@index([signedAt(sort: Desc)])

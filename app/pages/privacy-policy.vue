@@ -5,7 +5,7 @@
     </h1>
     
     <div class="prose max-w-4xl">
-      <p><strong>Last updated:</strong> 2025-08-06</p>
+      <p><strong>Last updated:</strong> 2025-08-09</p>
       
       <h2>1. Introduction</h2>
       <p>
@@ -50,10 +50,19 @@
         <li><strong>Legal Obligation:</strong> When required to comply with applicable laws</li>
       </ul>
       
-      <h2>5. How We Use Your Information</h2>
+      <h2>5. Privacy Levels</h2>
+      <p>When signing the manifesto, you can choose from three privacy levels:</p>
+      <ul>
+        <li><strong>Full Profile:</strong> Display your full name, optional profile picture, and clickable link to your profile</li>
+        <li><strong>First Name Only:</strong> Display only your first name and optional profile picture, without any profile link</li>
+        <li><strong>Anonymous:</strong> Display "Anonymous Supporter" with a generic avatar and no profile link</li>
+      </ul>
+      <p>You can control whether to show your profile picture for all non-anonymous privacy levels.</p>
+
+      <h2>6. How We Use Your Information</h2>
       <p>We use your information only to:</p>
       <ul>
-        <li>Display your public profile information in the signees list (if you choose to sign)</li>
+        <li>Display your public profile information in the signees list according to your chosen privacy level</li>
         <li>Authenticate users through GitHub or LinkedIn OAuth</li>
         <li>Respond to your inquiries and communications</li>
         <li>Ensure website security and prevent abuse</li>
@@ -61,10 +70,10 @@
       </ul>
       <p><strong>We do not:</strong> sell your data or use it for any commercial purposes.</p>
 
-      <h2>6. Data Sharing and Third Parties</h2>
+      <h2>7. Data Sharing and Third Parties</h2>
       <p>We share your data with the following third-party services necessary for website operation:</p>
       
-      <h3>6.1 GitHub</h3>
+      <h3>7.1 GitHub</h3>
       <p>
         For user authentication. We only access your public profile information. GitHub's privacy policy applies: 
         <NuxtLink
@@ -77,7 +86,7 @@
         </NuxtLink>
       </p>
       
-      <h3>6.2 LinkedIn</h3>
+      <h3>7.2 LinkedIn</h3>
       <p>
         For user authentication. We only access your public profile information. LinkedIn's privacy policy applies: 
         <NuxtLink
@@ -90,7 +99,7 @@
         </NuxtLink>
       </p>
       
-      <h3>6.3 Supabase</h3>
+      <h3>7.3 Supabase</h3>
       <p>
         Our database hosting provider that stores signee information securely. Supabase's privacy policy applies: 
         <NuxtLink
@@ -103,7 +112,7 @@
         </NuxtLink>
       </p>
       
-      <h3>6.4 Vercel</h3>
+      <h3>7.4 Vercel</h3>
       <p>
         Our hosting provider processes minimal technical data for website delivery and security. Vercel's privacy policy applies: 
         <NuxtLink
@@ -116,7 +125,7 @@
         </NuxtLink>
       </p>
       
-      <h2>7. Data Retention</h2>
+      <h2>8. Data Retention</h2>
       <ul>
         <li><strong>Signee Data:</strong> Retained until you request deletion or remove your signature</li>
         <li><strong>Email Communications:</strong> Retained for up to 2 years or until deletion is requested</li>
@@ -124,7 +133,7 @@
         <li><strong>No Analytics Data:</strong> We don't collect any analytics or tracking data</li>
       </ul>
       
-      <h2>8. Your Rights Under GDPR</h2>
+      <h2>9. Your Rights Under GDPR</h2>
       <p>You have the following rights regarding your personal data:</p>
       <ul>
         <li><strong>Right of Access:</strong> Request a copy of your personal data</li>
@@ -142,7 +151,7 @@
         </NuxtLink>.
       </p>
       
-      <h2>9. Data Security</h2>
+      <h2>10. Data Security</h2>
       <p>
         We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, 
         alteration, disclosure, or destruction. This includes:
@@ -155,20 +164,20 @@
         <li>Data minimization - we only collect what's necessary</li>
       </ul>
       
-      <h2>10. International Data Transfers</h2>
+      <h2>11. International Data Transfers</h2>
       <p>
         Your data may be transferred to and processed in countries outside the European Economic Area (EEA), 
         including the United States (Vercel, GitHub, Supabase). These transfers are based on adequacy decisions, 
         standard contractual clauses, or other appropriate safeguards as required by GDPR.
       </p>
       
-      <h2>11. Cookies and Tracking</h2>
+      <h2>12. Cookies and Tracking</h2>
       <p>
         This website does not use tracking cookies or analytics. GitHub and LinkedIn OAuth may set necessary session cookies 
         for authentication purposes only. We do not track individual users or collect behavioral data.
       </p>
       
-      <h2>12. Non-Commercial Nature</h2>
+      <h2>13. Non-Commercial Nature</h2>
       <p>
         This is a <strong>non-commercial, open-source project</strong> dedicated to promoting responsible AI development practices. 
         We do not monetize user data, display advertisements, or use data for any commercial purposes. 
@@ -182,13 +191,13 @@
         </NuxtLink>
       </p>
       
-      <h2>13. Changes to This Privacy Policy</h2>
+      <h2>14. Changes to This Privacy Policy</h2>
       <p>
         We may update this privacy policy from time to time. Any changes will be posted on this page with an updated 
         "Last updated" date. For significant changes, we may provide additional notice.
       </p>
       
-      <h2>14. Contact Information</h2>
+      <h2>15. Contact Information</h2>
       <p>
         If you have any questions about this privacy policy or our data practices, please contact us:
       </p>
