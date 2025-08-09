@@ -14,6 +14,13 @@ export const SigneeInputSchema = z.object({
   displayName: z.string().optional().nullable(),
   avatarUrl: z.string(),
   profileUrl: z.string(),
+  privacyLevel: z.enum([
+    'full',
+    'first_name',
+    'anonymous',
+  ]).default('full'),
+  showProfilePic: z.boolean().default(true),
+  userHash: z.string().optional().nullable(),
 })
 
 export const PaginationSchema = z.object({
@@ -25,6 +32,13 @@ export const PublicSigneeSchema = z.object({
   displayName: z.string().nullable(),
   avatarUrl: z.string(),
   profileUrl: z.string(),
+  firstName: z.string().optional().nullable(),
+  privacyLevel: z.enum([
+    'full',
+    'first_name', 
+    'anonymous',
+  ]).optional(),
+  showProfilePic: z.boolean().optional(),
 })
 
 export const SigneesResponseSchema = z.object({

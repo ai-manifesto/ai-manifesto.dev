@@ -1,8 +1,12 @@
 <script setup lang="ts">
 type Signee = {
+  id: string
   displayName?: string
   avatarUrl: string
   profileUrl: string
+  firstName?: string
+  privacyLevel?: 'full' | 'first_name' | 'anonymous'
+  showProfilePic?: boolean
 }
 
 type SigneesResponse = {
@@ -50,14 +54,25 @@ const goToPage = (page: number) => {
   }
 }
 
-const formatDisplayName = (signee: Signee) => {
-  return signee.displayName || 'Unknown'
-}
+const displayData = computed(() => {
+  return signeesData.value.signees.map(signee => ({
+    signee,
+    display: getSigneeDisplayData(signee, true),
+  }))
+})
 
-// Auto-refresh every 30 seconds
+const clickableSignees = computed(() => {
+  return displayData.value.filter(item => item.display.isClickable)
+})
+
+const nonClickableSignees = computed(() => {
+  return displayData.value.filter(item => !item.display.isClickable)
+})
+
+// Auto-refresh every 3 minutes
 const { pause, resume } = useIntervalFn(() => {
   refresh()
-}, 30000)
+}, 180000)
 
 onMounted(() => {
   resume()
@@ -99,25 +114,42 @@ onUnmounted(() => {
     <div v-else-if="signeesData.signees.length > 0">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6 mb-4">
         <a
-          v-for="signee in signeesData.signees"
-          :key="signee.profileUrl"
-          :href="signee.profileUrl"
+          v-for="item in clickableSignees"
+          :key="item.signee.id"
+          :href="item.display.profileUrl"
           target="_blank"
           rel="noopener noreferrer"
-          class="card signee-card"
-          :title="formatDisplayName(signee)"
+          class="card signee-card clickable"
+          :title="item.display.name"
         >
           <img
-            :src="signee.avatarUrl" 
-            :alt="`${formatDisplayName(signee)}'s avatar`"
+            :src="item.display.avatar" 
+            :alt="`${item.display.name}'s avatar`"
             class="signee-avatar"
             loading="lazy"
             decoding="async"
           />
           <div class="signee-info">
-            <span class="signee-name">{{ formatDisplayName(signee) }}</span>
+            <span class="signee-name">{{ item.display.name }}</span>
           </div>
         </a>
+        <div
+          v-for="item in nonClickableSignees"
+          :key="item.signee.id"
+          class="card signee-card"
+          :title="item.display.name"
+        >
+          <img
+            :src="item.display.avatar" 
+            :alt="`${item.display.name}'s avatar`"
+            class="signee-avatar"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="signee-info">
+            <span class="signee-name">{{ item.display.name }}</span>
+          </div>
+        </div>
       </div>
 
       <nav 
@@ -238,6 +270,19 @@ onUnmounted(() => {
   transform: scale(1.05);
 }
 
+.card.signee-card.clickable {
+  cursor: pointer;
+}
+
+.card.signee-card:not(.clickable) {
+  cursor: default;
+}
+
+.card.signee-card:not(.clickable):hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(var(--border-color), 0.1);
+}
+
 .signee-info {
   display: flex;
   flex-direction: column;
@@ -249,9 +294,15 @@ onUnmounted(() => {
 .signee-name {
   font-weight: 600;
   font-size: 1rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .pagination {
@@ -306,7 +357,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #00d9ff 0%, #0099cc 50%, #006699 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 50%, var(--secondary-hover) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1;
@@ -317,11 +368,11 @@ onUnmounted(() => {
 }
 
 .page-number.active {
-  background: linear-gradient(135deg, #00d9ff 0%, #0099cc 50%, #006699 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 50%, var(--secondary-hover) 100%);
   color: white;
-  border-color: #00d9ff;
+  border-color: var(--primary-color);
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 217, 255, 0.3);
+  box-shadow: 0 4px 16px var(--surface-glow);
 }
 
 .page-number.active::before {

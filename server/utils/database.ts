@@ -1,6 +1,7 @@
 import { type Prisma, PrismaClient } from '@prisma/client'
 import { 
   PaginationSchema,
+  PublicSigneeSchema,
   SigneeInputSchema,
   type SigneeStats,
   type SigneesResponse, 
@@ -20,6 +21,9 @@ const PUBLIC_FIELDS = {
   displayName: true,
   avatarUrl: true,
   profileUrl: true,
+  firstName: true,
+  privacyLevel: true,
+  showProfilePic: true,
 } as const satisfies Prisma.SigneeSelect
 
 export { prisma }
@@ -29,12 +33,15 @@ export async function getAllSignees (query: unknown): Promise<SigneesResponse> {
   const offset = (page - 1) * limit
 
   const paginationResult = await prisma.$transaction(async (tx) => {
-    const signees = await tx.signee.findMany({
+    const rawSignees = await tx.signee.findMany({
       select: PUBLIC_FIELDS,
       orderBy: { signedAt: 'desc' },
       skip: offset,
       take: limit,
     })
+
+    // map / transform for type safety
+    const signees = rawSignees.map(signee => PublicSigneeSchema.parse(signee))
     
     const total = await tx.signee.count()
     
@@ -57,6 +64,17 @@ export async function getAllSignees (query: unknown): Promise<SigneesResponse> {
 
 export async function addSignee (signeeData: unknown): Promise<void> {
   const validatedData = SigneeInputSchema.parse(signeeData)
+  
+  if (validatedData.privacyLevel === 'anonymous' && validatedData.userHash) {
+    const existingAnonymous = await prisma.signee.findUnique({
+      where: { userHash: validatedData.userHash },
+      select: { id: true },
+    })
+    if (existingAnonymous) {
+      throw new Error('ALREADY_SIGNED')
+    }
+  }
+  
   await prisma.signee.create({ data: validatedData })
 }
 
