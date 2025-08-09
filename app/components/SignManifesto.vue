@@ -18,14 +18,18 @@ const signWith = async (provider: 'github' | 'linkedin') => {
   showPrivacyDialog.value = false
   
   try {
-    const params = new URLSearchParams({
-      privacy: privacyLevel.value,
-      showProfilePic: showProfilePic.value.toString(),
+    // persist privacy settings through oAuth
+    await $fetch('/api/auth/privacy-session', {
+      method: 'POST',
+      body: {
+        privacyLevel: privacyLevel.value,
+        showProfilePic: showProfilePic.value,
+      },
     })
     
-    await navigateTo(`/auth/${provider}?${params.toString()}`, { external: true })
+    await navigateTo(`/auth/${provider}`, { external: true })
   } catch (error) {
-    console.error('Sign in error:', error)
+    console.error('Privacy session error:', error)
     signingProvider.value = null
   }
 }
@@ -41,6 +45,9 @@ onMounted(() => {
   } else if (route.query.signed === 'already') {
     showMessage.value = 'You have already signed this manifesto.'
     messageType.value = 'info'
+  } else if (route.query.error === 'github_missing_privacy' || route.query.error === 'linkedin_missing_privacy') {
+    showMessage.value = 'Privacy settings were lost. Please try signing again.'
+    messageType.value = 'error'
   } else if (route.query.error) {
     showMessage.value = 'There was an error signing the manifesto. Please try again.'
     messageType.value = 'error'
