@@ -76,9 +76,9 @@ onMounted(() => {
 
 <template>
   <div class="card">
-    <h3>1. Sign the Manifest</h3>
+    <h3>1. Sign the manifesto</h3>
     <p>
-      Sign the manifest using your GitHub or LinkedIn account. Choose your privacy level
+      Sign the manifesto using your GitHub or LinkedIn account. Choose your privacy level
       to control what information is displayed publicly.
     </p>
     
