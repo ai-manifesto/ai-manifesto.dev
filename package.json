@@ -18,6 +18,8 @@
     "preview": "nuxt preview",
     "seed:clear": "npx tsx scripts/seed-test-data.ts clear",
     "seed:test": "npx tsx scripts/seed-test-data.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:types": "npx nuxt typecheck",
     "vercel-build": "prisma generate && prisma migrate deploy && nuxt build",
     "prepare": "husky"
@@ -49,10 +51,13 @@
     "prisma": "^6.13.0",
     "prisma-zod-generator": "^1.1.1",
     "typescript": "5.8.3",
+    "vitest": "^3.2.4",
     "vue-eslint-parser": "^10.2.0"
   },
-    "pnpm": {
-    "ignoredBuiltDependencies": ["@prisma/client"]
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@prisma/client"
+    ]
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

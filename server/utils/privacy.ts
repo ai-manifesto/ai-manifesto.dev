@@ -1,22 +1,5 @@
 import { createHash } from 'crypto'
-import type { PrivacyLevel } from '#shared/utils/signee-display'
-
-export type PrivacyOptions = {
-  privacyLevel: PrivacyLevel
-  showProfilePic: boolean
-}
-
-export type UserData = {
-  id: string | number
-  name?: string
-  login?: string
-  given_name?: string
-  family_name?: string
-  avatar_url?: string
-  picture?: string
-  html_url?: string
-  profileUrl?: string
-}
+import type { PrivacyOptions, UserData } from './validation'
 
 export function createUserHash (providerId: string, provider: string): string {
   return createHash('sha256')
@@ -101,4 +84,4 @@ export function processSigneeData (
   }
 }
 
-export { getSigneeDisplayData as getDisplayData } from '#shared/utils/signee-display'
+export { getSigneeDisplayData as getDisplayData } from '../../shared/utils/signee-display'

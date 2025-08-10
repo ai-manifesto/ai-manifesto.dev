@@ -1,27 +1,6 @@
 <script setup lang="ts">
-type Signee = {
-  id: string
-  displayName?: string
-  avatarUrl: string
-  profileUrl: string
-  firstName?: string
-  privacyLevel?: 'full' | 'first_name' | 'anonymous'
-  showProfilePic?: boolean
-}
-
-type SigneesResponse = {
-  signees: Signee[]
-  total: number
-  page: number
-  limit: number
-  totalPages: number
-  hasNextPage: boolean
-  hasPrevPage: boolean
-}
-
-type SigneeStats = {
-  total: number
-}
+import type { PublicSignee, SigneeStats, SigneesResponse } from '../../server/utils/validation'
+import { getSigneeDisplayData } from '#shared/utils/signee-display'
 
 const config = useRuntimeConfig()
 const currentPage = ref(1)
@@ -55,18 +34,19 @@ const goToPage = (page: number) => {
 }
 
 const displayData = computed(() => {
-  return signeesData.value.signees.map(signee => ({
+  return signeesData.value.signees.map((signee: PublicSignee, index: number) => ({
     signee,
     display: getSigneeDisplayData(signee, true),
+    key: `${currentPage.value}-${index}`,
   }))
 })
 
 const clickableSignees = computed(() => {
-  return displayData.value.filter(item => item.display.isClickable)
+  return displayData.value.filter((item: any) => item.display.isClickable)
 })
 
 const nonClickableSignees = computed(() => {
-  return displayData.value.filter(item => !item.display.isClickable)
+  return displayData.value.filter((item: any) => !item.display.isClickable)
 })
 
 // Auto-refresh every 3 minutes
@@ -115,7 +95,7 @@ onUnmounted(() => {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6 mb-4">
         <a
           v-for="item in clickableSignees"
-          :key="item.signee.id"
+          :key="item.key"
           :href="item.display.profileUrl"
           target="_blank"
           rel="noopener noreferrer"
@@ -135,7 +115,7 @@ onUnmounted(() => {
         </a>
         <div
           v-for="item in nonClickableSignees"
-          :key="item.signee.id"
+          :key="item.key"
           class="card signee-card"
           :title="item.display.name"
         >
