@@ -1,10 +1,4 @@
-import type { PrivacyLevel } from '#shared/utils/signee-display'
-
-export type PrivacySessionData = {
-  privacyLevel: PrivacyLevel
-  showProfilePic: boolean
-  timestamp: number
-}
+import type { PrivacyLevel, PrivacySessionData } from './validation'
 
 export async function setPrivacySession (event: any, privacyData: {
   privacyLevel: PrivacyLevel

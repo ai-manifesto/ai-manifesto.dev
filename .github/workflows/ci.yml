@@ -33,3 +33,6 @@ jobs:
 
       - name: Type check
         run: pnpm run test:types
+
+      - name: Run tests
+        run: pnpm test

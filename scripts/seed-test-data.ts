@@ -6,23 +6,13 @@
 
 import { PrismaClient } from '@prisma/client'
 import { createUserHash } from '../server/utils/privacy'
+import type { SigneeInput } from '../server/utils/validation'
 
 const prisma = new PrismaClient()
 
-type PrivacyLevel = 'full' | 'first_name' | 'anonymous'
-
-interface TestSignee {
-  displayName: string
-  provider: 'github' | 'linkedin'
-  providerId: string
-  username: string | null
-  firstName: string | null
-  lastName: string | null
-  avatarUrl: string
-  profileUrl: string
-  privacyLevel: PrivacyLevel
-  showProfilePic: boolean
-  userHash?: string
+// Use SigneeInput type from validation schema, but make displayName required for seed data
+interface TestSignee extends Omit<SigneeInput, 'displayName'> {
+  displayName: string // Always required in seed data (matches our new requirement)
 }
 
 // Mix of privacy levels to test all scenarios
