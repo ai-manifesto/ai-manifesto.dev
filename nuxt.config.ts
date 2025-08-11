@@ -15,8 +15,8 @@ export default defineNuxtConfig({
     configPath: './tailwind.config.ts',
   },
   site: {
-    name: 'The Manifest Using AI responsibly in Development and Collaboration',
-    description: 'A manifesto to guide responsible AI Usage.',
+    name: 'The AI Manifesto: Using AI responsibly in Development and Collaboration',
+    description: 'A manifesto to guide responsible AI usage.',
     url: 'https://ai-manifesto.dev',
   },
   app: {
