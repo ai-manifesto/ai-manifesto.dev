@@ -24,7 +24,7 @@ export function processSigneeData (
   
   const userAvatar = provider === 'github' 
     ? userData.avatar_url 
-    : (userData.picture || 'https://static.licdn.com/sc/h/3r1v2dvhvfg1wxc8t9p8k4sy5')
+    : (userData.picture || '/anonymous-avatar.svg')
   
   const userProfileUrl = provider === 'github' 
     ? userData.html_url 

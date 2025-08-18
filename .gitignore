@@ -25,3 +25,7 @@ logs
 
 #Local Design Elements
 design/
+
+#TODO
+*.todo.md
+TODO.md

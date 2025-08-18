@@ -34,7 +34,7 @@ export const SigneeInputSchema = z.object({
 
 export const PaginationSchema = z.object({
   page: z.coerce.number().min(1).default(1),
-  limit: z.coerce.number().min(1).max(50).default(20),
+  limit: z.coerce.number().min(1).max(50).default(21),
 })
 
 export const PublicSigneeSchema = z.object({

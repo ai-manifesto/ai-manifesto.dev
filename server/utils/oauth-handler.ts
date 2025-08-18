@@ -3,6 +3,7 @@ import { createUserHash, processSigneeData } from './privacy'
 import { clearPrivacySession, getPrivacySession } from './privacy-session'
 
 export async function handleOAuthSignup (
+  //TODO: Better types
   event: any,
   user: any,
   provider: 'github' | 'linkedin',

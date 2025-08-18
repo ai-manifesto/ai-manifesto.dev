@@ -84,7 +84,9 @@ export default defineNuxtConfig({
       cookie: {
         httpOnly: true,
         sameSite: 'lax',
+        secure: true,
       },
+
     },
     public: {
       pagination: {
